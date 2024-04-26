@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "NGMD6fCNL5nrhMAZeC671FqTx+m2zFNVqbou0hOgODT7LpqWPTG2/tjwSRnNoLd52XCWt5LohjgdsCgJrEftVA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Blog.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\l4cig\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.4\\microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512",
+    "C:\\Users\\l4cig\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.4\\microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
+    "C:\\Users\\l4cig\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.4\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

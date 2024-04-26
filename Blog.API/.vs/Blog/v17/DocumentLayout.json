@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3B6DE83F-437D-49D2-B61A-CA1B8D532350}|..\\Blog.Data\\Blog.Data.csproj|c:\\users\\l4cig\\desktop\\rendszerfejlesztes_beadando_blog\\blog.data\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\Blog.Data\\Class1.cs",
+              "ToolTip": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Class1.cs",
+              "RelativeToolTip": "..\\Blog.Data\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T17:11:21.621Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
