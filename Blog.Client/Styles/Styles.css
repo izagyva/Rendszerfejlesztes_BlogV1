@@ -1,0 +1,177 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.mt-5 {
+    margin-top: 3.6rem !important;
+}
+
+.post-row {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.post-info {
+    margin-left: 20px;
+}
+
+.post-btn {
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+#post {
+    position: relative;
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 10px 18px 0 0;
+}
+
+.post-quantity {
+    color: white;
+    background-color: red;
+    padding: 3px 4px;
+    position: absolute;
+    margin: 0 7px 0 0;
+    right: 0;
+    border: solid 2px red;
+    border-radius: 15px;
+    font-weight: bolder;
+}
+
+.card {
+    margin: 1em;
+    position: relative;
+    overflow: hidden;
+    text-align: center
+}
+
+.card:hover .add-to-post {
+    transform: translateX(0);
+}
+
+.add-to-post {
+    background-color: black;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 55%;
+    padding: .5em 1em;
+    transform: translateX(300px);
+    transition: .5s ease;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 1.2rem
+}
+
+.delete-post {
+    background-color: red;
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 1rem
+}
+
+.post-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 2;
+    transform: translateX(-200%);
+    transition: .5s ease-out;
+
+}
+
+.post-modal {
+    height: 100vh;
+    width: 50%;
+    background-color: whitesmoke;
+    float: right;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#close-btn {
+    font-size: 1.5rem;
+    float: right;
+    margin: .5em 2em 0 0;
+    color: black;
+    cursor: pointer;
+}
+
+.total {
+    text-align: center;
+    margin: 2em 0 2em 0;
+}
+
+.post-total {
+    color: black;
+}
+
+.total-price {
+    color: black;
+    font-size: 2rem;
+    display: block;
+}
+
+.post-rows {
+    margin-top: 3em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.post-row {
+    display: flex;
+    align-items: center;
+}
+
+.post-price {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.remove-btn:active {
+    transform: translateY(5px);
+}
+
+.active > .page-link, .page-link.active {
+    z-index: 0;
+}
+
+@media (max-width: 1000px) {
+    .post-modal {
+        width: 100vw;
+    }
+
+    .post-row {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    .post-quantity {
+        margin: .5em 0 .5em 0
+    }
+}

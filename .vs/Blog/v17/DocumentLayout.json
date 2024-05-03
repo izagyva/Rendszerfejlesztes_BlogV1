@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|c:\\users\\l4cig\\desktop\\rendszerfejlesztes_beadando_blog\\blog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|solutionrelative:blog.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|c:\\users\\l4cig\\desktop\\rendszerfejlesztes_beadando_blog\\blog.api\\controllers\\topicscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|solutionrelative:blog.api\\controllers\\topicscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|c:\\users\\l4cig\\desktop\\rendszerfejlesztes_beadando_blog\\blog.api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B32BB52-1E1F-4F9F-90B7-7BD65DADCE96}|Blog.API\\Blog.API.csproj|solutionrelative:blog.api\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,32 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TopicsController.cs",
+              "DocumentMoniker": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Controllers\\TopicsController.cs",
+              "RelativeDocumentMoniker": "Blog.API\\Controllers\\TopicsController.cs",
+              "ToolTip": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Controllers\\TopicsController.cs",
+              "RelativeToolTip": "Blog.API\\Controllers\\TopicsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T16:49:33.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CommentsController.cs",
+              "DocumentMoniker": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Controllers\\CommentsController.cs",
+              "RelativeDocumentMoniker": "Blog.API\\Controllers\\CommentsController.cs",
+              "ToolTip": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Controllers\\CommentsController.cs",
+              "RelativeToolTip": "Blog.API\\Controllers\\CommentsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T16:52:24.262Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +56,7 @@
               "RelativeDocumentMoniker": "Blog.API\\Program.cs",
               "ToolTip": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.API\\Program.cs",
               "RelativeToolTip": "Blog.API\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAvAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA7wCAAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-28T06:47:45.94Z",
               "EditorCaption": ""
