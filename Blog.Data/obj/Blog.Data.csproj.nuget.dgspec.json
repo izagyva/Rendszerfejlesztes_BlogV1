@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\suli\\GIT\\Rendszerfejlesztes_BlogV1\\Blog.Data\\Blog.Data.csproj": {}
+    "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Blog.Data.csproj": {}
   },
   "projects": {
-    "E:\\suli\\GIT\\Rendszerfejlesztes_BlogV1\\Blog.Data\\Blog.Data.csproj": {
+    "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Blog.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\suli\\GIT\\Rendszerfejlesztes_BlogV1\\Blog.Data\\Blog.Data.csproj",
+        "projectUniqueName": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Blog.Data.csproj",
         "projectName": "Blog.Data",
-        "projectPath": "E:\\suli\\GIT\\Rendszerfejlesztes_BlogV1\\Blog.Data\\Blog.Data.csproj",
-        "packagesPath": "C:\\Users\\orban\\.nuget\\packages\\",
-        "outputPath": "E:\\suli\\GIT\\Rendszerfejlesztes_BlogV1\\Blog.Data\\obj\\",
+        "projectPath": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\Blog.Data.csproj",
+        "packagesPath": "C:\\Users\\l4cig\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\l4cig\\Desktop\\Rendszerfejlesztes_beadando_Blog\\Blog.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\orban\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\l4cig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,6 +62,14 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            },
+            "MongoDB.Driver.Core": {
+              "target": "Package",
+              "version": "[2.25.0, )"
             }
           },
           "imports": [
@@ -76,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

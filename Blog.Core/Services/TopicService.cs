@@ -1,55 +1,88 @@
-﻿using System;
+﻿using AutoMapper;
+using Blog.Core.Models.Topics;
+using Blog.Data;
+using Blog.Data.Entities;
+using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
-public class Topic
-{
-}
 namespace Blog.Core.Services
 {
     public interface ITopicService
     {
-        //Task GetTopics(int pageNumber, int pageSize);
-        //Task GetTopic(int id);
-        //Task GetTopicsByUser(int userId);
-        Task<List<Topic>> GetTopics(int pageNumber, int pageSize);
-        Task<List<Topic>> GetTopicsByUser(int userId);
-        Task<Topic> GetTopic(int id);
+        Task<TopicDto> GetTopic(int id);
+        Task<PagedResult<TopicDto>> GetTopics(int pageNumber, int pageSize);
+        Task<PagedResult<TopicDto>> CreateTopic(CreateTopicDto createTopicDto);
+        Task<PagedResult<TopicDto>> UpdateTopic(int id, CreateTopicDto updateTopicDto);
+        Task<PagedResult<TopicDto>> DeleteTopic(int id);
     }
 
     public class TopicService : ITopicService
     {
-        //public async Task GetTopics(int pageNumber, int pageSize)
-        //{
+        private readonly BlogMongoDbContext _context;
+        private readonly IMapper _mapper;
 
-        //}
-
-        //public async Task GetTopic(int id)
-        //{
-
-        //}
-        //public async Task GetTopicsByUser(int userId)
-        //{
-
-        //}
-        public async Task<List<Topic>> GetTopics(int pageNumber, int pageSize)
+        public TopicService(BlogMongoDbContext context, IMapper mapper)
         {
-            return new List<Topic>(); // Placeholder value
-        }
-        public async Task<Topic> GetTopic(int id)
-        {
-            Topic asd = new Topic();
-            return asd; // Placeholder value
+            _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<List<Topic>> GetTopicsByUser(int userId)
+        public async Task<TopicDto> GetTopic(int id)
         {
-            return new List<Topic>(); // Placeholder value
+            var topic = await _context.Topics.Find(t => t.Id == id).FirstOrDefaultAsync();
+            if (topic == null)
+            {
+                throw new System.Exception("Topic not found");
+            }
+            return _mapper.Map<TopicDto>(topic);
         }
 
+        public async Task<PagedResult<TopicDto>> GetTopics(int pageNumber, int pageSize)
+        {
+            var topics = await _context.Topics.Find(_ => true)
+                .Skip((pageNumber - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
+
+            var totalRecords = await _context.Topics.CountDocumentsAsync(_ => true);
+            var pagedResult = new PagedResult<TopicDto>
+            {
+                Items = _mapper.Map<List<TopicDto>>(topics),
+                TotalRecords = (int)totalRecords,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
+            return pagedResult;
+        }
+
+        public async Task<PagedResult<TopicDto>> CreateTopic(CreateTopicDto createTopicDto)
+        {
+            var topic = _mapper.Map<Topic>(createTopicDto);
+            await _context.Topics.InsertOneAsync(topic);
+            return await GetTopics(1, 10); // Assuming you want to return the first page of topics
+        }
+
+        public async Task<PagedResult<TopicDto>> UpdateTopic(int id, CreateTopicDto updateTopicDto)
+        {
+            var topic = await _context.Topics.Find(t => t.Id == id).FirstOrDefaultAsync();
+            if (topic == null)
+            {
+                throw new System.Exception("Topic not found");
+            }
+            _mapper.Map(updateTopicDto, topic);
+            await _context.Topics.ReplaceOneAsync(t => t.Id == id, topic);
+            return await GetTopics(1, 10); // Assuming you want to return the first page of topics
+        }
+
+        public async Task<PagedResult<TopicDto>> DeleteTopic(int id)
+        {
+            var result = await _context.Topics.DeleteOneAsync(t => t.Id == id);
+            if (result.DeletedCount == 0)
+            {
+                throw new System.Exception("Topic not found");
+            }
+            return await GetTopics(1, 10); // Assuming you want to return the first page of topics
+        }
     }
 }

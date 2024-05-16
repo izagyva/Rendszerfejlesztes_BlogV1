@@ -1,33 +1,88 @@
-﻿using System;
+﻿using AutoMapper;
+using Blog.Core.Models.Comments;
+using Blog.Data;
+using Blog.Data.Entities;
+using MongoDB.Driver;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
-public class Comment
-{
-
-}
 namespace Blog.Core.Services
 {
     public interface ICommentService
     {
-        Task<List<Comment>> AddComment(int topicId, string text);
-        Task<List<Comment>> GetCommentsForTopic(int id);
+        Task<CommentDto> GetComment(int id);
+        Task<PagedResult<CommentDto>> GetCommentsByTopic(int topicId, int pageNumber, int pageSize);
+        Task<CommentDto> CreateComment(CreateCommentDto createCommentDto, string jwtToken);
+        Task<CommentDto> UpdateComment(int id, CreateCommentDto updateCommentDto);
+        Task DeleteComment(int id);
     }
 
     public class CommentService : ICommentService
     {
-        public async Task<List<Comment>> AddComment(int topicId, string text)
+        private readonly BlogMongoDbContext _context;
+        private readonly IMapper _mapper;
+
+        public CommentService(BlogMongoDbContext context, IMapper mapper)
         {
-            return new List<Comment>();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<List<Comment>> GetCommentsForTopic(int id)
+        public async Task<CommentDto> GetComment(int id)
         {
-            return new List<Comment>();
+            var comment = await _context.Comments.Find(c => c.Id == id).FirstOrDefaultAsync();
+            if (comment == null)
+            {
+                throw new System.Exception("Comment not found");
+            }
+            return _mapper.Map<CommentDto>(comment);
+        }
+
+        public async Task<PagedResult<CommentDto>> GetCommentsByTopic(int topicId, int pageNumber, int pageSize)
+        {
+            var filter = Builders<Comment>.Filter.Eq(c => c.TopicId, topicId);
+            var comments = await _context.Comments.Find(filter)
+                .Skip((pageNumber - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
+
+            var totalRecords = await _context.Comments.CountDocumentsAsync(filter);
+            var pagedResult = new PagedResult<CommentDto>
+            {
+                Items = _mapper.Map<List<CommentDto>>(comments),
+                TotalRecords = (int)totalRecords,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
+            return pagedResult;
+        }
+
+        public async Task<CommentDto> CreateComment(CreateCommentDto createCommentDto, string jwtToken)
+        {
+            var comment = _mapper.Map<Comment>(createCommentDto);
+            await _context.Comments.InsertOneAsync(comment);
+            return _mapper.Map<CommentDto>(comment);
+        }
+
+        public async Task<CommentDto> UpdateComment(int id, CreateCommentDto updateCommentDto)
+        {
+            var comment = await _context.Comments.Find(c => c.Id == id).FirstOrDefaultAsync();
+            if (comment == null)
+            {
+                throw new System.Exception("Comment not found");
+            }
+            _mapper.Map(updateCommentDto, comment);
+            await _context.Comments.ReplaceOneAsync(c => c.Id == id, comment);
+            return _mapper.Map<CommentDto>(comment);
+        }
+
+        public async Task DeleteComment(int id)
+        {
+            var result = await _context.Comments.DeleteOneAsync(c => c.Id == id);
+            if (result.DeletedCount == 0)
+            {
+                throw new System.Exception("Comment not found");
+            }
         }
     }
 }

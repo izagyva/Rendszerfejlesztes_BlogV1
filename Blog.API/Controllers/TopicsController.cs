@@ -32,21 +32,15 @@ public class TopicsController : ControllerBase
         }
         return Ok(topic);
     }
-
-    [HttpGet("user")]
-    public async Task<IActionResult> GetUserTopics()
+    private string GetJwtFromCookie_topics()
     {
-        var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (int.TryParse(userIdString, out int userId))
+        // Assuming the JWT token is stored in a cookie named 'AuthToken'
+        var jwtCookie = HttpContext.Request.Cookies["AuthToken"];
+        if (string.IsNullOrEmpty(jwtCookie))
         {
-            var topics = await _topicService.GetTopicsByUser(userId);
-            return Ok(topics);
+            throw new System.UnauthorizedAccessException("No token found in cookies.");
         }
-        else
-        {
-            // Handle the case when userIdString is not a valid integer.
-            // You might want to return a BadRequest result or throw an exception.
-            return BadRequest("User ID is not a valid integer.");
-        }
+        // Here you might want to add additional parsing if the cookie contains more than just the token
+        return jwtCookie;
     }
 }
