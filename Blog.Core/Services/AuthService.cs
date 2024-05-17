@@ -58,13 +58,14 @@ namespace Blog.Core.Services
         private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, user.username),
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-        // Add other claims as needed
-    };
-
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["Token"]));
+            {
+                new Claim(ClaimTypes.Name, user.username),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                // Add other claims as needed
+            };
+            // Use the key from the configuration and ensure it is long enough for SHA256
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("Token").Value ?? throw new Exception("Token kulcs nincs megadva")));
+            // Use HmacSha512 for signing the token
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var token = new JwtSecurityToken(

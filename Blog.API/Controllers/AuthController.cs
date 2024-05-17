@@ -21,13 +21,6 @@ public class AuthController : ControllerBase
         try
         {
             var authResponse = await _authService.Login(loginDto);
-            var cookieOptions = new CookieOptions
-            {
-                Expires = DateTime.UtcNow.AddDays(1) // Set the cookie to expire in 1 day
-            };
-
-            // Assuming authResponse contains a property called 'Token' with the JWT
-            Response.Cookies.Append("AuthToken", authResponse.Token, cookieOptions);
             return Ok(authResponse);
         }
         catch (System.Exception ex)

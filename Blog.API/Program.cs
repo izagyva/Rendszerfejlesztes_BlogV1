@@ -52,14 +52,10 @@ namespace Blog.API
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    // Retrieve the key from configuration and convert it from base64 to byte array
-                    var base64EncodedKey = builder.Configuration.GetSection("Token").Value;
-                    var key = Convert.FromBase64String(base64EncodedKey);
-
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Token").Value)),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true

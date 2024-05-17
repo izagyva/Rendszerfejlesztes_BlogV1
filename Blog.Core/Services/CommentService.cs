@@ -12,7 +12,7 @@ namespace Blog.Core.Services
     {
         Task<CommentDto> GetComment(int id);
         Task<PagedResult<CommentDto>> GetCommentsByTopic(int topicId, int pageNumber, int pageSize);
-        Task<CommentDto> CreateComment(CreateCommentDto createCommentDto, string jwtToken);
+        Task<CommentDto> CreateComment(CreateCommentDto createCommentDto);
         Task<CommentDto> UpdateComment(int id, CreateCommentDto updateCommentDto);
         Task DeleteComment(int id);
     }
@@ -57,7 +57,7 @@ namespace Blog.Core.Services
             return pagedResult;
         }
 
-        public async Task<CommentDto> CreateComment(CreateCommentDto createCommentDto, string jwtToken)
+        public async Task<CommentDto> CreateComment(CreateCommentDto createCommentDto)
         {
             var comment = _mapper.Map<Comment>(createCommentDto);
             await _context.Comments.InsertOneAsync(comment);

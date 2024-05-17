@@ -1,11 +1,12 @@
 ﻿using Blog.Core.Services;
+using Blog.Core.Constans;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Blog.Core.Models.Comments; // Import the namespace for Comment DTOs
 
 [Route("api/[controller]")]
-[Authorize]
+[Authorize(Roles = $"{Roles.User}")]
 [ApiController]
 public class CommentsController : ControllerBase
 {
@@ -19,8 +20,7 @@ public class CommentsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateComment([FromBody] CreateCommentDto createCommentDto)
     {
-        string jwtToken = GetJwtFromCookie_comments(); // Retrieve the JWT token from the cookie
-        var createdComment = await _commentService.CreateComment(createCommentDto, jwtToken); // Pass both parameters
+        var createdComment = await _commentService.CreateComment(createCommentDto); // Pass both parameters
         return CreatedAtAction(nameof(GetComment), new { id = createdComment.Id }, createdComment);
     }
 
@@ -55,16 +55,5 @@ public class CommentsController : ControllerBase
         await _commentService.DeleteComment(id);
         return NoContent();
     }
-    private string GetJwtFromCookie_comments()
-    {
-        // Assuming the JWT token is stored in a cookie named 'AuthToken'
-        var jwtCookie = HttpContext.Request.Cookies["AuthToken"];
-        if (string.IsNullOrEmpty(jwtCookie))
-        {
-            throw new System.UnauthorizedAccessException("No token found in cookies.");
-        }
-        // Here you might want to add additional parsing if the cookie contains more than just the token
 
-        return jwtCookie;
-    }
 }
